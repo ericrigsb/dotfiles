@@ -227,6 +227,31 @@ install_zoxide() {
     fi
 }
 
+# Install git-delta (better git diff viewer)
+install_git_delta() {
+    if command_exists git-delta; then
+        print_success "git-delta already installed"
+    else
+        print_info "Installing git-delta..."
+        brew install git-delta
+        print_success "git-delta installed"
+    fi
+}
+
+# Configure git-delta in ~/.gitconfig
+configure_git_delta() {
+    print_info "Configuring git-delta..."
+    
+    git config --global core.pager "delta"
+    git config --global interactive.diffFilter "delta --color-only"
+    git config --global delta.navigate "true"
+    git config --global delta.side-by-side "true"
+    git config --global merge.conflictstyle "diff3"
+    git config --global diff.colorMoved "default"
+    
+    print_success "git-delta configured in ~/.gitconfig"
+}
+
 # Backup existing dotfiles
 backup_dotfiles() {
     print_info "Checking for existing dotfiles..."
@@ -331,6 +356,8 @@ main() {
     install_bat
     install_eza
     install_zoxide
+    install_git_delta
+    configure_git_delta
     
     echo ""
     print_info "Setting up dotfiles..."

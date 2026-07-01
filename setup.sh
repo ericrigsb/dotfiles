@@ -172,6 +172,61 @@ install_tpm() {
     fi
 }
 
+# Install fzf (fuzzy finder)
+install_fzf() {
+    if command_exists fzf; then
+        print_success "fzf already installed"
+    else
+        print_info "Installing fzf..."
+        brew install fzf
+        print_success "fzf installed"
+    fi
+}
+
+# Install fd (alternative to find)
+install_fd() {
+    if command_exists fd; then
+        print_success "fd already installed"
+    else
+        print_info "Installing fd..."
+        brew install fd
+        print_success "fd installed"
+    fi
+}
+
+# Install bat (alternative to cat)
+install_bat() {
+    if command_exists bat; then
+        print_success "bat already installed"
+    else
+        print_info "Installing bat..."
+        brew install bat
+        print_success "bat installed"
+    fi
+}
+
+# Install eza (alternative to ls)
+install_eza() {
+    if command_exists eza; then
+        print_success "eza already installed"
+    else
+        print_info "Installing eza..."
+        brew install eza
+        print_success "eza installed"
+    fi
+}
+
+# Install zoxide (alternative to cd)
+install_zoxide() {
+    if command_exists zoxide; then
+        print_success "zoxide already installed"
+    else
+        print_info "Installing zoxide..."
+        brew install zoxide
+        print_success "zoxide installed"
+    fi
+}
+
 # Backup existing dotfiles
 backup_dotfiles() {
     print_info "Checking for existing dotfiles..."
@@ -271,6 +326,11 @@ main() {
     install_zsh_plugins
     install_tmux
     install_tpm
+    install_fzf
+    install_fd
+    install_bat
+    install_eza
+    install_zoxide
     
     echo ""
     print_info "Setting up dotfiles..."

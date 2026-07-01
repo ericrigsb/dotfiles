@@ -183,6 +183,18 @@ install_fzf() {
     fi
 }
 
+# Install fzf-git.sh (git integration for fzf)
+install_fzf_git() {
+    local FZF_GIT_DIR="$HOME/fzf-git.sh"
+    if [[ -d "$FZF_GIT_DIR" ]]; then
+        print_success "fzf-git.sh already installed"
+    else
+        print_info "Installing fzf-git.sh..."
+        git clone https://github.com/junegunn/fzf-git.sh.git "$FZF_GIT_DIR"
+        print_success "fzf-git.sh installed"
+    fi
+}
+
 # Install fd (alternative to find)
 install_fd() {
     if command_exists fd; then
@@ -352,6 +364,7 @@ main() {
     install_tmux
     install_tpm
     install_fzf
+    install_fzf_git
     install_fd
     install_bat
     install_eza
